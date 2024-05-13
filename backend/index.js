@@ -7,7 +7,9 @@ const path = require('path')
 
 require("dotenv").config;
 
-const urlDB = `mysql://root:ZrRnEuBTNJGXvADOLaDdaKxavknIWOJG@monorail.proxy.rlwy.net:25876/railway`
+// const urlDB = `mysql://root:ZrRnEuBTNJGXvADOLaDdaKxavknIWOJG@monorail.proxy.rlwy.net:25876/railway`
+
+const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQL_DATABASE}`
 
 app.use(myconn(mysql,
     // {
