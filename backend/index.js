@@ -27,6 +27,6 @@ app.use(express.static(path.join(__dirname, 'dbImages')))
 
 app.use(require('./routes/routes'))
 
-app.listen(process.env.port, () => {
-    console.log('Server running on', 'http://localhost:' + process.env.port)
+app.listen(process.env.PORT, () => {
+    console.log('Server running on', 'http://localhost:' + process.env.PORT)
 })
