@@ -14,7 +14,7 @@ function App() {
   const [imageDimensions, setImageDimensions] = useState({ width: "100px", height: "100px" });
 
   useEffect(() => {
-    fetch('http://localhost:9000/images/get')
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/images/get`)
       .then(res => res.json())
       .then(res => setImageList(res))
       .catch(err => {
@@ -37,7 +37,7 @@ function App() {
     const formdata = new FormData()
     formdata.append('image', file)
 
-    fetch('http://localhost:9000/images/post', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/images/post`, {
       method: 'POST',
 
       body: formdata
@@ -67,7 +67,7 @@ function App() {
   const deleteHandler = () => {
     let imgId = viewedImage.id
 
-    fetch('http://localhost:9000/images/delete/' + imgId, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/images/delete/` + imgId, {
       method: 'DELETE',
     })
       .then(res => res.text())
@@ -156,7 +156,7 @@ function App() {
           <button onClick={handleNextImage} className="btn btn-secondary mx-3">Next</button>
           <button onClick={handleZoomIn} className="btn btn-secondary mx-3">Zoom In</button>
           <button onClick={handleZoomOut} className="btn btn-secondary mx-3">Zoom Out</button>
-          <button className="btn btn-secondary" onClick={() => window.open(`http://localhost:9000/${viewedImage}`, '_blank')}>Full Screen</button>
+          <button className="btn btn-secondary" onClick={() => window.open(`${process.env.REACT_APP_BACKEND_URL}/${viewedImage}`, '_blank')}>Full Screen</button>
         </div>
       </Modal>
     </Fragment>
