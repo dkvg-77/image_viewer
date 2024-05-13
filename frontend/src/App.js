@@ -6,6 +6,8 @@ import './App.css';
 function App() {
   Modal.setAppElement('body');
 
+  const isDesktop = window.innerWidth > 768;
+
   const [file, setFile] = useState(null);
   const [imgList, setImageList] = useState([]);
   const [listUpdated, setListUpdated] = useState(false);
@@ -128,7 +130,7 @@ function App() {
         </div>
       </nav>
 
-      <div className="container mt-5">
+      <div className="container my-3 my-sm-4">
         <div className="card p-3">
           <div className="row">
             <div className="col-lg-10 col-md-9 col-sm-8">
@@ -156,10 +158,15 @@ function App() {
         </div>
       </div>
 
-
-
-      
-      <Modal style={{ content: { right: "20%", left: "20%", overflow: "hidden" } }} isOpen={modalStatus} onRequestClose={() => modalHandler(false, null)}>
+      <Modal style={{
+        content: {
+          overflow: 'hidden',
+          top: isDesktop ? '40px' : '50px',
+          bottom: isDesktop ? '40px' : '50px',
+          left: isDesktop ? '20%' : '10%',
+          right: isDesktop ? '20%' : '10%',
+        }
+      }}isOpen={modalStatus} onRequestClose={() => modalHandler(false, null)}>
         <div className="card" style={{
           height: "59vh",
           justifyContent: "center", alignItems: "center", overflowY: "auto"
