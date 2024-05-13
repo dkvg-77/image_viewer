@@ -68,10 +68,10 @@ const fileUpload = multer().single('image');
 // Handle GET request to retrieve images
 router.get('/images/get', (req, res) => {
     req.getConnection((err, conn) => {
-        if (err) return res.status(500).send('Server Error');
+        if (err) return res.status(500).send('Error connecting to Mysql');
 
         conn.query('SELECT id, data FROM image', (err, rows) => {
-            if (err) return res.status(500).send('Server Error');
+            if (err) return res.status(500).send('Error selecting id,data from image');
 
             // Convert the binary data to base64 and send as JSON response
             const imageData = rows.map(img => {
@@ -89,10 +89,10 @@ router.get('/images/get', (req, res) => {
 // Handle DELETE request to delete an image
 router.delete('/images/delete/:id', (req, res) => {
     req.getConnection((err, conn) => {
-        if (err) return res.status(500).send('Server Error');
+        if (err) return res.status(500).send('Error connecting to Mysql');
 
         conn.query('DELETE FROM image WHERE id = ?', [req.params.id], (err, rows) => {
-            if (err) return res.status(500).send('Server Error');
+            if (err) return res.status(500).send('Error while doing query for deleting the image');
 
             res.send('Image deleted');
         });
