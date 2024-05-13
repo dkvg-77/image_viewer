@@ -1,5 +1,5 @@
 const express = require('express')
-const cors = require ('cors')
+const cors = require('cors')
 const myconn = require('express-myconnection')
 const app = express()
 const mysql = require('mysql2')
@@ -7,13 +7,18 @@ const path = require('path')
 
 require("dotenv").config;
 
-app.use(myconn(mysql, {
-    host: process.env.DB_HOST,
-    port: process.env.PORT,
-    user: 'root',
-    password: "dhanyaKUMARVG@77",
-    database:'images'
-}))
+const urlDB = `mysql://root:ZrRnEuBTNJGXvADOLaDdaKxavknIWOJG@monorail.proxy.rlwy.net:25876/railway`
+
+app.use(myconn(mysql,
+    // {
+    //     host: process.env.DB_HOST,
+    //     port: process.env.PORT,
+    //     user: 'root',
+    //     password: "dhanyaKUMARVG@77",
+    //     database: 'images'
+    // }
+    urlDB
+))
 
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'dbImages')))
