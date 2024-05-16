@@ -108,7 +108,7 @@ function App() {
   };
 
   const handleZoomOut = () => {
-    if (zoomLevel > 0.1) {
+    if (zoomLevel > 0.01) {
       setZoomLevel(prevZoom => 0.8*prevZoom );
     }
   };
@@ -218,7 +218,7 @@ function App() {
           </div>
 
           <div className="d-flex flex-column align-items-center mx-1 mx-sm-3">
-            <button className="btn btn-secondary" onClick={() => window.open(`${process.env.REACT_APP_BACKEND_URL}/${viewedImage}`, '_blank')}>
+            <button className="btn btn-secondary" onClick={() => window.open(`data:image/png;base64, ${viewedImage.data}`, '_blank')}>
               <i className="icon size fa fa-expand" aria-hidden="true"></i>
             </button>
             <span className='icon-names'>Full Screen</span>
