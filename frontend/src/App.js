@@ -218,7 +218,7 @@ function App() {
           </div>
 
           <div className="d-flex flex-column align-items-center mx-1 mx-sm-3">
-            <button className="btn btn-secondary" onClick={() => window.open(`${process.env.REACT_APP_BACKEND_URL}/${viewedImage.data}`, '_blank')}>
+            <button className="btn btn-secondary" >
               <i className="icon size fa fa-expand" aria-hidden="true"></i>
             </button>
             <span className='icon-names'>Full Screen</span>
