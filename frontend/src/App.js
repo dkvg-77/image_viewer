@@ -71,7 +71,8 @@ function App() {
     setViewedImage(image)
     setImageIndex(index);
     setZoomLevel(1);
-    setImageDimensions({ width: "65vh", height: "65vh" });
+    const initialheight = 65*image.naturalHeight/image.naturalWidth;
+    setImageDimensions({ width: "65vh", height: `${initialheight}vh` });
   }
 
 
@@ -120,7 +121,7 @@ function App() {
     const imageElement = document.getElementById("viewedImage");
     if (imageElement) {
       const scaledWidth = 65 * zoomLevel;
-      const scaledHeight = 65 * zoomLevel;
+      const scaledHeight = imageElement.naturalHeight *65* zoomLevel/imageElement.naturalWidth;
       setImageDimensions({ width: `${scaledWidth}vh`, height: `${scaledHeight}vh` });
     }
   }, [zoomLevel, viewedImage]);
