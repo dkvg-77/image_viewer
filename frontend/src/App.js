@@ -15,7 +15,7 @@ function App() {
   const [modalStatus, setModalStatus] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
-  const [imageDimensions, setImageDimensions] = useState({ width: "100px", height: "100px" });
+  const [imageDimensions, setImageDimensions] = useState({ width: "65vh", height: "65vh" });
 
   // Fetching of images present in the database initially.
 
@@ -71,7 +71,7 @@ function App() {
     setViewedImage(image)
     setImageIndex(index);
     setZoomLevel(1);
-    setImageDimensions({ width: "auto", height: "auto" });
+    setImageDimensions({ width: "65vh", height: "65vh" });
   }
 
 
@@ -96,29 +96,32 @@ function App() {
   const handleNextImage = () => {
     setImageIndex(prevIndex => (prevIndex + 1) % imgList.length);
     setViewedImage(imgList[(imageIndex + 1) % imgList.length]);
+    setZoomLevel(1);
+    
   };
 
   const handlePrevImage = () => {
     setImageIndex(prevIndex => (prevIndex === 0 ? imgList.length - 1 : prevIndex - 1));
     setViewedImage(imgList[(imageIndex === 0 ? imgList.length - 1 : imageIndex - 1)]);
+    setZoomLevel(1);
   };
 
   const handleZoomIn = () => {
-    setZoomLevel(prevZoom => 1.2*prevZoom );
+    setZoomLevel(prevZoom => 1.1*prevZoom );
   };
 
   const handleZoomOut = () => {
     if (zoomLevel > 0.01) {
-      setZoomLevel(prevZoom => 0.8*prevZoom );
+      setZoomLevel(prevZoom => 0.9*prevZoom );
     }
   };
 
   useEffect(() => {
     const imageElement = document.getElementById("viewedImage");
     if (imageElement) {
-      const scaledWidth = imageElement.naturalWidth * zoomLevel;
-      const scaledHeight = imageElement.naturalHeight * zoomLevel;
-      setImageDimensions({ width: `${scaledWidth}px`, height: `${scaledHeight}px` });
+      const scaledWidth = 65 * zoomLevel;
+      const scaledHeight = 65 * zoomLevel;
+      setImageDimensions({ width: `${scaledWidth}vh`, height: `${scaledHeight}vh` });
     }
   }, [zoomLevel, viewedImage]);
 
