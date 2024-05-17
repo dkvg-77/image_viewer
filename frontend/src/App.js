@@ -202,19 +202,19 @@ function App() {
             </button>
             <span className='icon-names'>Next</span>
           </div>
+          
+          <div className="d-flex flex-column align-items-center mx-1 mx-sm-3">
+            <button onClick={handleZoomOut} className="btn btn-secondary mx-sm-3">
+              <i className="icon size fa fa-search-minus" aria-hidden="true"></i>
+            </button>
+            <span className='icon-names'>Zoom Out</span>
+          </div>
 
           <div className="d-flex flex-column align-items-center mx-1 mx-sm-3">
             <button onClick={handleZoomIn} className="btn btn-secondary mx-sm-3">
               <i className="icon size fa fa-search-plus" aria-hidden="true"></i>
             </button>
             <span className='icon-names'>Zoom In</span>
-          </div>
-
-          <div className="d-flex flex-column align-items-center mx-1 mx-sm-3">
-            <button onClick={handleZoomOut} className="btn btn-secondary mx-sm-3">
-              <i className="icon size fa fa-search-minus" aria-hidden="true"></i>
-            </button>
-            <span className='icon-names'>Zoom Out</span>
           </div>
 
           <div className="d-flex flex-column align-items-center mx-1 mx-sm-3">
