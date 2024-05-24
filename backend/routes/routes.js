@@ -21,6 +21,7 @@ const fileUpload = multer().single('image');
         .resize({ width: 800 }) // Adjust the dimensions as needed
         .toBuffer()
         .then(compressedData => {
+          
           // Upload the compressed image to MySQL
           req.getConnection((err, conn) => {
             if (err) {
@@ -28,12 +29,14 @@ const fileUpload = multer().single('image');
               res.status(500).send('Server Error');
               return;
             }
+            
             conn.query('INSERT INTO image (type, name, data) VALUES (?, ?, ?)', [file.mimetype, file.originalname, compressedData], (err, results) => {
               if (err) {
                 console.error('Error uploading compressed image to MySQL:', err);
                 res.status(500).send('Server Error');
                 return;
               }
+              console.log(compressedData.size);
               console.log('Compressed image uploaded to MySQL');
               res.send('Compressed image uploaded successfully!');
             });
