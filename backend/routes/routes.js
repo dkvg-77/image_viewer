@@ -13,7 +13,7 @@ const fileUpload = multer().single('image');
     }
   
     const file = req.file;
-  
+    console.log('Size of image before uploading => ' + file.size);
     // Check file size
     if (file.size > 6000000) { // 6MB in bytes
       // Compress the image
@@ -36,7 +36,7 @@ const fileUpload = multer().single('image');
                 res.status(500).send('Server Error');
                 return;
               }
-              console.log(compressedData.size);
+              console.log('Size of compressed image after uploading => '+ Buffer.byteLength(compressedData));
               console.log('Compressed image uploaded to MySQL');
               res.send('Compressed image uploaded successfully!');
             });
